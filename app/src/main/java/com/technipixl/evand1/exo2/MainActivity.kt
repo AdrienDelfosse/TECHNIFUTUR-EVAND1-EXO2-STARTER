@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.EditText
+import java.lang.NumberFormatException
 
 class MainActivity : Activity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +40,19 @@ class MainActivity : Activity(), View.OnClickListener {
     }
 
     private fun isLoginValid(login: String): Boolean {
-        val firstCharacter = login.substring(0, 1)
-        val value = firstCharacter.toInt()
-        val convertedValue = Integer.toString(value)
-        if (firstCharacter.compareTo(convertedValue) != 0) {
-            return false
+
+        try {
+            val firstCharacter = login.substring(0, 1)
+            val value = firstCharacter.toInt()
+            val convertedValue = value.toString()
+            if (firstCharacter.compareTo(convertedValue) == 0) {
+                return false
+            }
+        }catch (e:Exception){
+
+
         }
+
         return login.contains("@")
     }
 }

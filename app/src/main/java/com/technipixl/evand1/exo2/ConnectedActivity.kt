@@ -17,39 +17,41 @@ class ConnectedActivity : Activity() {
         loadData()
         displayData()
         textViewContent = findViewById<View>(R.id.textViewContent) as TextView
+
     }
 
     private fun loadData() {
         listItems.clear()
-        listItems.add("Message 1")
-        listItems.add("Message 2")
-        listItems.add("Message 3")
-        listItems.add("Message 4")
-        listItems.add("Message 5")
-        listItems.add("Message 6")
+        listItems.add("Item1")
+        listItems.add("Item2")
+        listItems.add("Item3")
+        listItems.add("Item4")
+        listItems.add("Item5")
+        listItems.add("Item6")
         numberOfItems = listItems.size
         updateData()
     }
 
     private fun updateData() {
         //remove last item
-        listItems.removeAt(listItems.size)
+        listItems.removeAt(listItems.size-1)
     }
 
     private fun displayData() {
         val stringBuilder = StringBuilder()
-        for (i in 0 until numberOfItems) {
+        for (i in 0 until numberOfItems-1) {
             stringBuilder.append(
                 listItems[i].trimIndent()
             )
             stringBuilder.appendLine()
         }
-        textViewContent?.text = stringBuilder.toString()
+        (findViewById<View>(R.id.textViewContent) as TextView).text = stringBuilder.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.connected, menu)
+
         return true
     }
 }
